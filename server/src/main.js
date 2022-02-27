@@ -1,12 +1,15 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 8080
 const bodyParser = require('body-parser')
 const axios = require('axios')
+const cors = require('cors')
+
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
-})
+}) 
 
 app.post('/api/login', bodyParser.json(), async (req,res) =>{
     let token = req.body.token
