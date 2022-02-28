@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const axios = require('axios')
 const cors = require('cors')
 const TOKEN_SECRET = '92c71949d9b8579b2f70ef1f8c6b46506be88eeae25707f05c16a3c7983f1e9a3b1823b06ae11b06320bb1d7760938de9944c4318080f61f4d19decfe30dec96'
-
+const jwt = require('jsonwebtoken')
 app.use(cors())
 
 app.get('/', (req, res) => {
@@ -25,11 +25,11 @@ app.post('/api/login', bodyParser.json(), async (req,res) =>{
         return
     }
         let data = {
-            username : result.data.email
+            username: result.data.email
         }
         let access_token = jwt.sign(data, TOKEN_SECRET, {expiresIn: '1800s'})
         res.send({access_token, username: data.username})
-
+        return
 })
 
 app.listen(port, () => {

@@ -1,15 +1,16 @@
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios';
 
-const responseFacebook = async(response) => {
+const responseFacebook = async (response) => {
   if(response.accessToken){
-    console.log('log in with access_token' + response.accessToken);
-    let result = axios.post('http://localhost:8080/api/login',{
+    console.log('log in with access_Token=' + response.accessToken)
+    let result = await axios.post('http://localhost:8080/api/login', {
       token: response.accessToken
     })
     console.log(result.data)
-  } 
+  }
 }
+
 
 function App() {
   return (
